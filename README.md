@@ -26,7 +26,7 @@ The goal is a **clean, maintainable, and transparent financial system**.
 - **bcrypt** – password hashing
 - **openpyxl** – Excel exports
 
-Everything runs locally; no external cloud services (could be a stretch goal for scale)
+Everything runs locally; no external cloud services.
 
 ---
 
