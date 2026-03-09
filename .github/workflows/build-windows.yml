@@ -22,11 +22,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build executable with PyInstaller
+      - name: Build user executable (no console)
         run: pyinstaller --onefile --noconsole --name ARCKAE-Finance launcher.py
 
-      - name: Upload ARCKAE-Finance.exe
+      - name: Build debug executable (with console)
+        run: pyinstaller --onefile --name ARCKAE-Finance-debug launcher.py
+
+      - name: Upload executables
         uses: actions/upload-artifact@v4
         with:
           name: ARCKAE-Finance-Windows
-          path: dist/ARCKAE-Finance.exe
+          path: |
+            dist/ARCKAE-Finance.exe
+            dist/ARCKAE-Finance-debug.exe
