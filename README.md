@@ -1,6 +1,6 @@
 ## ArcKAE Finance – Local Finance Tracking App
 
-ArcKAE Finance is a **local desktop-style finance tracking application** built for the Kenyan study abroad consultancy **ArcKAE**.  
+ArcKAE Finance is a **local desktop-style finance tracking application** built for **ARCKAE** Education Agency LTD  
 It runs as a **Streamlit app in the browser** and stores all data locally in a **SQLite** database.
 
 The system tracks:
@@ -12,7 +12,7 @@ The system tracks:
 - **Financial summaries**
 - **KRA‑ready export reports**
 
-The goal is a **clean, maintainable, and transparent financial system** that a small business can rely on daily.
+The goal is a **clean, maintainable, and transparent financial system**.
 
 ---
 
@@ -26,7 +26,7 @@ The goal is a **clean, maintainable, and transparent financial system** that a s
 - **bcrypt** – password hashing
 - **openpyxl** – Excel exports
 
-Everything runs locally; no external cloud services are required.
+Everything runs locally; no external cloud services (could be a stretch goal for scale)
 
 ---
 
@@ -73,16 +73,14 @@ Tables:
   - `id`, `username`, `password_hash`, `created_at`
   - Used for **login authentication**
   - Passwords are stored as **bcrypt hashes** (never plain-text)
-
 - `expenses`
   - `id`, `date`, `supplier_name`, `supplier_kra_pin`, `etims_invoice_number`,
-    `category`, `description`, `amount_kes`, `payment_method`,
-    `receipt_path`, `created_at`
-
+  `category`, `description`, `amount_kes`, `payment_method`,
+  `receipt_path`, `created_at`
 - `revenues`
   - `id`, `date`, `client_name`, `service_type`, `description`,
-    `amount_received`, `payment_method`, `mpesa_reference`,
-    `receipt_path`, `created_at`
+  `amount_received`, `payment_method`, `mpesa_reference`,
+  `receipt_path`, `created_at`
 
 The schema is created automatically on first run by `database.init_db()`.
 
@@ -120,8 +118,8 @@ You should log in with these credentials and **change the password** via the **S
 1. When you open the app, you see the **Login** page.
 2. Enter your username and password.
 3. On success:
-   - Streamlit’s `session_state` is updated with `logged_in = True` and your `username`.
-   - All other pages become accessible in the sidebar.
+  - Streamlit’s `session_state` is updated with `logged_in = True` and your `username`.
+  - All other pages become accessible in the sidebar.
 4. If you log out, your session is cleared and you’re returned to the Login page.
 
 No page other than **Login** is accessible unless you are logged in.
@@ -197,8 +195,8 @@ Allowed file types:
 Uploaded files are:
 
 1. Stored in the `receipts/` folder.
-2. Renamed to:  
-   `type_YYYY_MM_DD_<unique>.ext`  
+2. Renamed to:
+  `type_YYYY_MM_DD_<unique>.ext`  
    where `type` is `expense` or `revenue`, and `<unique>` ensures there are no collisions.
 3. The database only stores the **relative path** to the saved file, so the app can reference it later.
 
@@ -221,13 +219,11 @@ All monetary amounts are displayed in **KES currency format**, e.g.:
 The dashboard includes interactive Plotly charts:
 
 - **Expense Breakdown by Category (Pie Chart)**  
-  Shows where money is going across categories like Rent, Salaries, Marketing, etc.
-
+Shows where money is going across categories like Rent, Salaries, Marketing, etc.
 - **Revenue vs Expenses by Month (Bar Chart)**  
-  Groups revenue and expenses per month (e.g. 2026‑01, 2026‑02, …).
-
+Groups revenue and expenses per month (e.g. 2026‑01, 2026‑02, …).
 - **Cashflow Trend (Line Chart)**  
-  Plots **Net Cashflow = Revenue − Expenses** per month, to visualise trends.
+Plots **Net Cashflow = Revenue − Expenses** per month, to visualise trends.
 
 These charts are powered by **Pandas group-by** operations and rendered with **Plotly Express**.
 
@@ -322,7 +318,7 @@ When you click **Export**:
 
 1. The app builds a Pandas `DataFrame` for the chosen report and date range.
 2. It saves the file into the `exports/` directory with a timestamped name, e.g.:
-   - `expense_report_20260307_102030.csv`
+  - `expense_report_20260307_102030.csv`
 3. Streamlit shows a **Download** button so you can immediately save the file to your machine.
 
 These exports are designed to be **KRA-friendly**, giving clear, structured data suitable for audits or further analysis.
@@ -347,26 +343,20 @@ Nothing leaves the local environment. This keeps your data private and under you
 ## 11. Running the Application (Developer / Local Use)
 
 1. **Create & activate a virtual environment (recommended)**:
-
-   ```bash
+  ```bash
    python -m venv venv
    source venv/bin/activate  # Linux / macOS
    # On Windows:
    # venv\Scripts\activate
-   ```
-
+  ```
 2. **Install dependencies**:
-
-   ```bash
+  ```bash
    pip install -r requirements.txt
-   ```
-
+  ```
 3. **Run the Streamlit app**:
-
-   ```bash
+  ```bash
    streamlit run app.py
-   ```
-
+  ```
 4. Open the provided URL in your browser (typically `http://localhost:8501`).
 
 ---
@@ -428,5 +418,4 @@ For a deeper explanation of:
 - File upload and storage flow
 - The full EXE packaging process
 
-see **`DEVELOPER_GUIDE.md`**, which is written for developers who are learning Python and want to understand how everything fits together.
-
+see `**DEVELOPER_GUIDE.md**`, which is written for developers, like me,  who are learning Python (also like me) and want to understand how everything fits together.
